@@ -1,19 +1,92 @@
-.header-library__container {
-    display: flex;
+.header-library {
+    // display: flex;
+    // text-align: center;
+    // justify-content: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 62px;
+    background-color: #C4C4C4;
+        background-image: url(/src/images/header-library-mob.jpg);
+            background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
 }
 
+.header-library__navigation {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    margin: 0 0 60 0;
+    padding: 0;
+}
+
+.header-library__navigation--item.logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 113px;
+}
+
+.header-library__navigation--item.home{
+    margin-right: 39px;
+}
+
+
 .header-library__navigation--link{
-    font-family: 'Roboto';
+
+        text-decoration: none;
+        font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 12px;
-        line-height: 14px;
-        /* identical to box height */
-    
-        display: flex;
-        align-items: center;
-        text-align: center;
+        line-height: 1.17;
+        // display: flex;
+        // align-items: center;
+        // text-align: center;
         text-transform: uppercase;
     
-        color: #FFFFFF;
+        color: #C4C4C4
+}
+
+.header-library__navigation--icon {
+    width: 100%;
+    height: 100%;
+}
+
+.header-library__button-list {
+        list-style: none;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+}
+
+.header-library__button {
+    width: 130px;
+    height: 43px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.56);
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+// .header-library__button:hover {
+//     background-color: #FF6B01;
+//         filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+// }
+
+.header-library__button.watched{
+    margin-right: 20px;
 }
