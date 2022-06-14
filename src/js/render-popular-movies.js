@@ -1,6 +1,6 @@
-import getPopularMovies from '../js/Api';
+// import getPopularMovies from '../js/Api';
 
-function getPopularMovies(moviesItems) {
+export default function renderPopularMovies(moviesItems) {
   return moviesItems
     .map(({ poster_path, original_title, genre_ids, release_date }) => {
       return `
