@@ -1,47 +1,31 @@
-function renderPopularMovies(moviesItems) {
+import getPopularMovies from '../js/Api';
+
+function getPopularMovies(moviesItems) {
   return moviesItems
-    .map(({ preview, original, description }) => {
+    .map(({ poster_path, original_title, genre_ids, release_date }) => {
       return `
       <ul class="card-set">
   <li class="card-set__item">
     <div class="card-set__box-img">
       <img
-        src="https://cdn.pixabay.com/photo/2022/06/08/22/13/cat-7251342_960_720.jpg"
-        alt=""
+        src='${poster_path}'
+        alt='${original_title}'
         class="card-set__img"
       />
     </div>
-    <h3 class="card-set__title">GREYHOUND</h3>
+    <h3 class="card-set__title">${title}</h3>
     <div class="card-set__description">
       <ul class="card-set__genre">
-        <li class="card-set__genre-movie">Drama,&nbsp</li>
-        <li class="card-set__genre-movie">Action&nbsp</li>
+        <li class="card-set__genre-movie">${genre_ids}</li>
+        <li class="card-set__genre-movie">${genre_ids}</li>
       </ul>
-      <span class="card-set__genre-movie">| 2020</span>
+      <span class="card-set__genre-movie">${release_date}</span>
     </div>
   </li>
 </ul>;
     
     `;
     })
-    .join('');
-}
-
-function createGalleryItemsMarkup(galleryItems) {
-  return galleryItems
-    .map(({ preview, original, description }) => {
-      return `
-    <div class="gallery__item">
-        <a class="gallery__item" href="${original}">
-            <img
-                class="gallery__image"
-                src="${preview}"
-                data-source="${original}"
-                alt="${description}"
-            />
-        </a>
-    </div>
-    `;
-    })
+    .split(('-', [0]))
     .join('');
 }
