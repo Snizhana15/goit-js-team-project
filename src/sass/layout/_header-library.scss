@@ -3,7 +3,7 @@
     margin: 0 auto;
     padding-top: 40px;
     padding-bottom: 60px;
-    border: 1px solid #000000;
+    border: 1px solid $color-text-black;
     background-color: rgba(0, 0, 0, 0.56);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
@@ -74,7 +74,7 @@
         font-size: 30px;
         line-height: 1.17;
         text-transform: capitalize;
-        color: #FFFFFF;
+        color: $color-text-primary;
 }
 
 .header-library__navigation--icon {
@@ -95,14 +95,13 @@
 
 .header-library__navigation--link{
         position: relative;
-        text-decoration: none;
         font-weight: 500;
         font-size: 12px;
         line-height: 1.17;
         display: flex;
         align-items: center;
         text-transform: uppercase;
-        color: #FFFFFF;
+        color: $color-text-primary;
         scale: 1;
         transition: 250ms cubic-bezier(0, 0, 1, 1);
 
@@ -124,7 +123,6 @@
 
 
 .header-library__button-list {
-    list-style: none;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -139,9 +137,9 @@
     font-size: 12px;
     line-height: 1.33;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color:$color-text-primary;
     background-color: rgba(0, 0, 0, 0.56);
-    border: 1px solid #FFFFFF;
+    border: 1px solid $color-text-primary;
     border-radius: 5px;
     cursor: pointer;
 
@@ -157,7 +155,7 @@
             }
         }
     &:focus {
-            background-color: #FF6B01;
+            background-color: $color-text-secondary;
             filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
             border: none;
         }
