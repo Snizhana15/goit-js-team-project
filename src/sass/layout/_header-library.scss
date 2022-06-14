@@ -1,17 +1,14 @@
 .header-library {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding-top: 40px;
-    padding-bottom: 60px;
-    border: 1px solid $color-text-black;
+    width: 100%;
+    // margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.56);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
     background-image:linear-gradient(rgba(0, 0, 0, 0.56),
             rgba(0, 0, 0, 0.56)), url(../images/header-library-mob.jpg);
 
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
     background-size: cover;
 
     @media (min-device-pixel-ratio: 2),
@@ -45,24 +42,26 @@
         }
     }
 }
+
+.header__container {
+    padding-top: 40px;
+    padding-bottom: 60px;
+
+    @media screen and (min-width: 1024px) {
+            padding-left: 66px;
+            padding-right: 76px;
+        }
+}
 .header-library__navigation {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin: 0 0 60 0;
-    padding: 0 20;
+    margin-bottom: 60px;
 
     @media screen and (min-width: 768px) {
-        margin: 0 0 40 0;
-        padding: 0 32;
+        margin-bottom: 40px
     }
-
-    @media screen and (min-width: 1024px) {
-        padding: 0 76 0 66;
-    }
-
-
 }
 
 .header-library__navigation--logo-title {
@@ -70,7 +69,6 @@
             display: none;
         }
 
-        font-weight: 500;
         font-size: 30px;
         line-height: 1.17;
         text-transform: capitalize;
@@ -95,10 +93,8 @@
 
 .header-library__navigation--link{
         position: relative;
-        font-weight: 500;
         font-size: 12px;
         line-height: 1.17;
-        display: flex;
         align-items: center;
         text-transform: uppercase;
         color: $color-text-primary;
@@ -126,8 +122,8 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    margin: 0;
-    padding: 0;
+    // margin: 0;
+    // padding: 0;
 }
 
 .header-library__button {
