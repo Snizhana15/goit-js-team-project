@@ -63,10 +63,6 @@
 
 .card-set__title {
     margin-top: 10px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
     line-height: 1.17;
     text-transform: uppercase;
     color: #000000;
@@ -78,15 +74,11 @@
     display: flex;
 }
 
-.card-set__genre-movie {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.33;
+.card-set__genre-movie, .card-set__production-year {
     color: #FF6B08;
-    
-    }
+}
+
+
 
 .card-set__description {
     align-items: baseline;
