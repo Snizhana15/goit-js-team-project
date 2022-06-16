@@ -3,6 +3,13 @@
   position: static;
   width: 10px;
   height: 10px;
+  margin-left: 10px;
+}
+.spinner--home{
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+  
 }
 
 .spinner:after {
