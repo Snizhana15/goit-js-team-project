@@ -4,8 +4,10 @@ const KEY = 'fadee9dfff8cb6b1bff36771479589d6';
 Функцию getPopularMovies() используем для запроса при рендере карточек популярных фильмов на главной странице.
 */
 
-export function getPopularMovies() {
-  return fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${KEY}`)
+export function getPopularMovies(pageNumber = 1) {
+  return fetch(
+    `https://api.themoviedb.org/3/trending/movie/day?api_key=${KEY}&page=${pageNumber}`
+  )
     .then(response => response.json())
     .then(data => {
       if (!(data.success ?? true)) {
@@ -22,7 +24,7 @@ export function getPopularMovies() {
 
 export function getMoviesBySearchQuery(searchQuery) {
   return fetch(
-    `https:api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=1&include_adult=false`
   )
     .then(response => response.json())
     .then(data => {
