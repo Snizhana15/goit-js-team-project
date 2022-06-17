@@ -13,8 +13,10 @@ async function getGenres() {
 
 async function getDataAboutPopularMovies(pageNumber) {
   try {
-    const { results } = await getPopularMovies(pageNumber);
-    return results;
+    const { results: movies, total_pages: totalPages } = await getPopularMovies(
+      pageNumber
+    );
+    return { movies, totalPages };
   } catch (error) {
     alert(error);
   }
@@ -22,7 +24,7 @@ async function getDataAboutPopularMovies(pageNumber) {
 
 async function renderPopularMovies(pageNumber) {
   const genres = await getGenres();
-  const movies = await getDataAboutPopularMovies(pageNumber);
+  const { movies, totalPages } = await getDataAboutPopularMovies(pageNumber);
 
   const cardsMarkup = movies
     .map(movie => renderMovieCard(movie, genres))
@@ -30,13 +32,15 @@ async function renderPopularMovies(pageNumber) {
 
   cardSet.innerHTML = '';
   cardSet.insertAdjacentHTML('afterbegin', cardsMarkup);
+
+  return totalPages;
 }
 
 function getGenresById(idList, genres) {
   return idList.map(id => genres.find(genre => genre.id === id).name);
 }
 
-function getGenresMarup(genres) {
+function getGenresMarkup(genres) {
   let genresMarkup = '';
 
   switch (genres.length) {
@@ -47,6 +51,12 @@ function getGenresMarup(genres) {
     case 2:
       genresMarkup = `<li class="card-set__genre-movie">${genres[0]},&nbsp</li>
                       <li class="card-set__genre-movie">${genres[1]}</li>`;
+      break;
+
+    case 3:
+      genresMarkup = `<li class="card-set__genre-movie">${genres[0]},&nbsp</li>
+                      <li class="card-set__genre-movie">${genres[1]},&nbsp</li>
+                      <li class="card-set__genre-movie">${genres[2]}</li>`;
       break;
 
     default:
@@ -63,7 +73,7 @@ function renderMovieCard(movie, genres) {
     movie;
 
   const alphabetGenres = getGenresById(genre_ids, genres);
-  const genresMarkup = getGenresMarup(alphabetGenres);
+  const genresMarkup = getGenresMarkup(alphabetGenres);
   const productionYear = new Date(release_date).getFullYear().toString();
 
   return `
