@@ -5,8 +5,7 @@
         <div class="header__menu">
             <a href="index.html" class="header__logo-box">
                 <svg class="header__icon--logo" width="24" height="24">
-                    <use
-                        href="./images/symbol.svg#icon-filmoteka">
+                    <use href="./images/symbol.svg#icon-filmoteka">
                     </use>
                 </svg>
                 <span class="header__title">Filmoteka</span>
@@ -15,7 +14,8 @@
             <nav class="header__nav">
                 <ul class="navigation-list">
                     <li class="nav__item">
-                        <a href="index.html" class="header__nav--link header__nav--link--current" data-state="home">HOME</a>
+                        <a href="index.html" class="header__nav--link header__nav--link--current"
+                            data-state="home">HOME</a>
                     </li>
                     <li class="nav__item">
                         <a href="library.html" class="header__nav--link" data-state="library">MY LIBRARY</a>
@@ -26,9 +26,12 @@
 
         <label class="header__label">
             <input class="header__input header__form-input" type="search" name="filmname" placeholder="Поиск фильмов" />
+            <div id="spinner" class="spinner--home"></div>
             <svg class="header__icon--search" width="12" height="12">
                 <use href="./images/symbol.svg#icon-search"></use>
             </svg>
+
+
         </label>
 
         <p class="header__error-text is-hidden">Search result not successful. Enter the correct movie name</p>
