@@ -22,9 +22,9 @@ export function getPopularMovies(pageNumber = 1) {
 Параметр searchQuery должен быть строкой из input-а поиска.
 */
 
-export function getMoviesBySearchQuery(searchQuery) {
+export function getMoviesBySearchQuery(searchQuery, pageNumber = 1) {
   return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=${pageNumber}&include_adult=false`
   )
     .then(response => response.json())
     .then(data => {
