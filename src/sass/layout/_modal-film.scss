@@ -6,11 +6,12 @@
   background-color: hsla(0, 0%, 0%, 0.25);
   z-index: 999;
   transition: visibility 0.5s, opacity 0.5s;
+  overflow: auto;
 }
 .film-card {
   background-color: $color-text-primary;
   width: 280px;
-  position: fixed;
+  position: absolute;
   margin-top: 150px;
   left: 50%;
   top: 50%;
@@ -28,11 +29,19 @@
     padding: 40px 16px 40px 16px;
   }
 }
+
+.film-card__box {
+  @media screen and(min-width:768px){
+  display: flex;
+  }
+}
+
 .film-card__button-close {
   position: absolute;
   top: 0;
   right: 0;
   background-color: transparent;
+  cursor: pointer;
   margin-top: 10px;
   margin-right: 8px;
   margin-bottom: 10px;
