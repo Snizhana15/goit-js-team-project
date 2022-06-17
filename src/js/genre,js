@@ -1,30 +1,36 @@
 // 1. Импортировать функцию;
 import { getMovieById } from './Api';
 
-// 2. Получить ссылки на все списки жанров (по каждой карточке);
+// 2. Получить ссылки на все списки жанров (по каждой карточке).
+// cardSetGenre - это массив ссылок на все списки.;
 const cardSetGenre = document.querySelectorALL('.card-set__genre');
 
 // 3. Проходимся по каждому списку циклом, проверяем длину списка - если === 3, то это наш клиент;
-const genresMarkup = genres.map(genre => renderGenres(genres)).join('');
+// const genresMarkup = cardSetGenre.map(genre => renderGenres(genres)).join('');
 
-function renderGenres(genres) {
-  for (i = 0; i < genres.length; i = +1) {
-    if (i === 3) {
-      console.log('Нашли число 3, прерываем выполнение цикла');
-      break;
-    }
-
-    //Добавляю строку внутри элемента
-    cardSetGenre.innerHTML = '';
-    cardSetGenre.insertAdjacentHTML('afterbegin', genresMarkup);
+// проверяем, что текстовый контент (texconent) последнего элемента === "Інші"
+// - если true, то вешаем слушатель на этот список;
+cardSetGenre.map(item => {
+  if (item.children.length === 3) {
+    // if (item.lastElementChild.firstElementChild.textContent === 'Інші') {
+    item.addEventListener('click', renderGenres);
   }
+});
+
+// в слушатель в качестве колбэк функции передаем функцию следующего функционала:
+// при клике на список находим карточку, которому этот список принадлежит;
+//  у этой карточки(li - ки) с помощью data атрибута забираем значение id;
+
+async function renderGenres(event) {
+  const Id = event.target.closest('.card-set__item').dataset.id;
+  console.log(Id);
+  const MovieInfo = await getMovieById(Id);
+  console.log(MovieInfo);
+
+  cardSetGenre.innerHTML = '';
+  cardSetGenre.insertAdjacentHTML('afterbegin', genresMarkup);
 }
 
-// проверяем, что текстовый контент последнего элемента === "Інші"
-// - если true, то вешаем слушатель на этот список;
-
-// в слушатель в качестве колбэк функции передаем функцию следующего функционала: при клике на список находим карточку, которому этот список принадлежит;
-//  у этой карточки(li - ки) с помощью data атрибута забираем значение id;
-// это id передаём в импортированную функцию getMovieById(запрос на сервер - возвращает объект, который представляет информацию про фильм) и получаем объект; у этого объекта деструктурируем свойство genres и забираем все genres.name(нужно посмотреть в объекте как они правильно называются); после этого по массиву жанров рендерим новую разметку для списка card - set__genre и вставляем в карточку.
-
-//  Создаю функцию расскрывающегося списка жанров больше трех
+// это id передаём в импортированную функцию getMovieById(запрос на сервер - возвращает объект, который представляет информацию про фильм) и получаем объект;
+// у этого объекта деструктурируем свойство genres и забираем все genres.name(нужно посмотреть в объекте как они правильно называются);
+//  после этого по массиву жанров рендерим новую разметку для списка card - set__genre и вставляем в карточку.
