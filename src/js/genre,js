@@ -30,7 +30,6 @@ async function renderGenres(event) {
   cardSetGenre.innerHTML = '';
   cardSetGenre.insertAdjacentHTML('afterbegin', genresMarkup);
 }
-
 // это id передаём в импортированную функцию getMovieById(запрос на сервер - возвращает объект, который представляет информацию про фильм) и получаем объект;
 // у этого объекта деструктурируем свойство genres и забираем все genres.name(нужно посмотреть в объекте как они правильно называются);
 //  после этого по массиву жанров рендерим новую разметку для списка card - set__genre и вставляем в карточку.
