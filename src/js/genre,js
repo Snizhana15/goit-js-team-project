@@ -10,6 +10,7 @@ const cardSetGenre = document.querySelectorALL('.card-set__genre');
 
 // проверяем, что текстовый контент (texconent) последнего элемента === "Інші"
 // - если true, то вешаем слушатель на этот список;
+
 cardSetGenre.map(item => {
   if (item.children.length === 3) {
     // if (item.lastElementChild.firstElementChild.textContent === 'Інші') {
@@ -22,13 +23,17 @@ cardSetGenre.map(item => {
 //  у этой карточки(li - ки) с помощью data атрибута забираем значение id;
 
 async function renderGenres(event) {
-  const Id = event.target.closest('.card-set__item').dataset.id;
-  console.log(Id);
-  const MovieInfo = await getMovieById(Id);
-  console.log(MovieInfo);
+  const id = event.target.closest('.card-set__item').dataset.id;
+  console.log(id);
+  const movieInfo = await getMovieById(id);
+  console.log(movieInfo);
+
+  const genresInfo = genres
+    .map(genres => renderMovieCard(genres, genresMarkup))
+    .join('');
 
   cardSetGenre.innerHTML = '';
-  cardSetGenre.insertAdjacentHTML('afterbegin', genresMarkup);
+  cardSetGenre.insertAdjacentHTML('afterbegin', genresInfo);
 }
 // это id передаём в импортированную функцию getMovieById(запрос на сервер - возвращает объект, который представляет информацию про фильм) и получаем объект;
 // у этого объекта деструктурируем свойство genres и забираем все genres.name(нужно посмотреть в объекте как они правильно называются);
