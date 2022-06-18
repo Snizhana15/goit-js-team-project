@@ -9,14 +9,15 @@ const refs = {
 };
 
 const onClick = async e => {
-  if (e.path[2].nodeName !== 'LI') {
+  if (!e.target.closest('.card-set__item')) {
     return;
   }
+
   refs.modalFilm.innerHTML = '';
   refs.backdropModalFilm.classList.remove('visually-hidden');
   refs.body.style.overflow = 'hidden';
 
-  const getFilmId = e.path[2].dataset.id;
+  const getFilmId = e.target.closest('.card-set__item').dataset.id;
 
   const infoAboutModalFilm = await getMovieById(getFilmId);
 
