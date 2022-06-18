@@ -1,7 +1,15 @@
 import { renderPopularMovies } from './js/render-popular-movies';
+import { changeMoviesPage } from './js/change-movies-page';
+
+async function downloadMainHomePage() {
+  const totalPages = await renderPopularMovies();
+  changeMoviesPage(totalPages > 50 ? 50 : totalPages, renderPopularMovies);
+}
+
+downloadMainHomePage();
 
 /*
-Пока что, чтобы посмотреть работает ли пагинация достаточно в функцию renderPopularMovies передать номер страницы в качестве параметра, например renderPopularMovies(3)
+Імпорт всього файлу modal-film.js
 */
 
-renderPopularMovies();
+import * as things from './js/modal-film';
