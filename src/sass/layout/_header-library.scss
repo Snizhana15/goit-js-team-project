@@ -47,19 +47,24 @@
     padding-bottom: 60px;
 
     @media screen and (min-width: 1024px) {
-            padding-left: 66px;
-            padding-right: 76px;
+            padding-left: 72px;
+            padding-right: 72px;
         }
 }
+
+.header-library__navigation {
+    margin-bottom: 60px;
+    
+        @media screen and (min-width: 768px) {
+            margin-bottom: 40px
+        }
+}
+
 .header-library__navigation--list {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 60px;
 
-    @media screen and (min-width: 768px) {
-        margin-bottom: 40px
-    }
 }
 
 .header-library__navigation--logo-title {
