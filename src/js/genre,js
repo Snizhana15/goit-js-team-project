@@ -29,7 +29,7 @@ async function renderGenres(event) {
   console.log(movieInfo);
 
   const genresInfo = genres
-    .map(genres => renderMovieCard(genres, genresMarkup))
+    .map(genres => renderGenres(genres, genresInfo))
     .join('');
 
   cardSetGenre.innerHTML = '';
