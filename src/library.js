@@ -1,0 +1,1 @@
+import * as elements from './js/modal-students';
