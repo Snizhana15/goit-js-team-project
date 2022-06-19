@@ -8,6 +8,11 @@ function addWatched(e) {
   const getFilmId = e.target.closest('.description-button__watched').dataset.id;
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
   const film = getFilmId;
+
+  if (films.includes(film)) {
+    return;
+  }
+
   films.push(film);
   localStorage.setItem('watched', JSON.stringify(films));
 }
@@ -18,6 +23,11 @@ function addQueue(e) {
   const getFilmId = e.target.closest('.description-button__queue').dataset.id;
   const films = JSON.parse(localStorage.getItem('queue') || '[]');
   const film = getFilmId;
+
+  if (films.includes(film)) {
+    return;
+  }
+
   films.push(film);
   localStorage.setItem('queue', JSON.stringify(films));
 }

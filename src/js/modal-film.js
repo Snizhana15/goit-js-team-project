@@ -7,10 +7,10 @@ const refs = {
   backdropModalFilm: document.querySelector('.backdrop'),
   modalFilm: document.querySelector('.film-card__box'),
 };
-const spinModal = document.querySelector('.spinner--modal')
-console.log(spinModal);
+const spinModal = document.querySelector('.spinner--modal');
 
-const onClick = async e => {spinModal.classList.add('spinner')
+const onClick = async e => {
+  spinModal.classList.add('spinner');
   if (!e.target.closest('.card-set__item')) {
     return;
   }
