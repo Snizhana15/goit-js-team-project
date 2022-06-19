@@ -5,6 +5,7 @@
   height: 10px;
   margin-left: 10px;
 }
+
 .spinner--home{
     display: inline-block;
     position: absolute;
@@ -21,7 +22,7 @@
   margin: auto;
   box-sizing: border-box;
   border: 6px solid #fff;
-  border-color: rgb(255, 255, 255) transparent rgb(255, 255, 255) transparent;
+  border-color: rgb(26, 11, 11) transparent rgb(49, 36, 36) transparent;
   animation: spinner 1.2s infinite;
 }
 
