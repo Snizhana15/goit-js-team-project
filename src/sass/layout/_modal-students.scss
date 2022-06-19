@@ -163,7 +163,7 @@ background-size: 300% 300%;
   border-radius: 0 50% 50% 50%;
 }
 
-.backdrop {
+.backdrops {
   overflow: auto;
   width: 100vw;
   height: 100vh;
@@ -173,15 +173,15 @@ background-size: 300% 300%;
   top: 0;
   transition: opacity 750ms cubic-bezier(0.4, 0, 0.2, 1), visibility 750ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.is-hidden {
-    .modal {
+  &.is-hiddens {
+    .modals {
       transform: scale(0.6) rotate(160deg) translateY(500px);
       transition: transform 750ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 }
 
-.modal {
+.modals {
   background: linear-gradient(175deg, #0052d4, #4364f7, #6fb1fc,
       #fffc50, #fffc00, #ffe000);
   background-size: 300% 300%;
@@ -225,27 +225,8 @@ background-size: 300% 300%;
     background-position: 0 50%
   }
 }
-.is-hidden{
+.is-hiddens{
 	visibility: hidden;
 	opacity: 0;
 	pointer-events: none;
-}
-@keyframes gradient {
-  0% {
-    background-position: 0 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0 50%
-  }
-}
-
-.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
 }
