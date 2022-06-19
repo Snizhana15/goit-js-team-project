@@ -7,8 +7,10 @@ const refs = {
   backdropModalFilm: document.querySelector('.backdrop'),
   modalFilm: document.querySelector('.film-card__box'),
 };
+const spinModal = document.querySelector('.spinner--modal')
+console.log(spinModal);
 
-const onClick = async e => {
+const onClick = async e => {spinModal.classList.add('spinner')
   if (!e.target.closest('.card-set__item')) {
     return;
   }
@@ -22,6 +24,7 @@ const onClick = async e => {
   const infoAboutModalFilm = await getMovieById(getFilmId);
 
   renderModalFilm(infoAboutModalFilm);
+  spinModal.classList.remove('spinner');
 };
 
 const renderModalFilm = modalFilm => {
