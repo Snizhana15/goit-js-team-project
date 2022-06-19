@@ -28,6 +28,7 @@ const renderModalFilm = modalFilm => {
   const {
     poster_path,
     title,
+    id,
     vote_average,
     vote_count,
     popularity,
@@ -74,10 +75,10 @@ const renderModalFilm = modalFilm => {
         <p class="description-about__text">${overview}</p>
       </div>
       <div class="film-card__description-button">
-        <button class="description-button description-button__watched">
+        <button class="description-button description-button__watched" data-id="${id}">
           add to Watched
         </button>
-        <button class="description-button description-button__queue">
+        <button class="description-button description-button__queue" data-id="${id}">
           add to queue
         </button>
       </div>

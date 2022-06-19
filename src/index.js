@@ -13,3 +13,4 @@ downloadMainHomePage();
 */
 
 import * as things from './js/modal-film';
+import * as elements from './js/localStorage';
