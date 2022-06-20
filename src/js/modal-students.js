@@ -6,15 +6,18 @@
     };
     function toggleModal() {
       refs.modal.classList.remove('is-hiddens');
+      document.body.classList.add("modal-open");
       function onKeyPress(event) {
         if (event.code === 'Escape') {
           refs.modal.classList.add('is-hiddens');
+          document.body.classList.remove("modal-open");
           refs.body.removeEventListener('keyup', onKeyPress);
         }
       }
       function onGalleryClick(event) {
         if (event.target.closest('.modals')) return;
         refs.modal.classList.add('is-hiddens');
+          document.body.classList.remove("modal-open");
         refs.modal.removeEventListener('click', onGalleryClick);
       }
       refs.body.addEventListener('keyup', onKeyPress);
