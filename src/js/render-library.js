@@ -1,5 +1,6 @@
 import { getStorage } from './modal-film';
 import { getMovieById } from './Api';
+import { changeMoviesPage } from './change-movies-page';
 
 // import { renderPopularMovies } from './render-popular-movies';
 const refs = {
@@ -8,6 +9,7 @@ const refs = {
   showQueueBtn: document.querySelector('.header-library__button--queue'),
 };
 
+let pageCount = 0;
 const onShowWatched = () => {
   const getWatchedMovie = localStorage.getItem('watched');
   const parsedWatchedMovie = JSON.parse(getWatchedMovie);
@@ -15,6 +17,10 @@ const onShowWatched = () => {
   refs.cardSet.innerHTML = '';
 
   renderWatched(parsedWatchedMovie);
+
+  getCountPages(parsedWatchedMovie);
+
+  changeMoviesPage(pageCount, renderLibrary);
 };
 
 const onShowQueue = () => {
@@ -24,6 +30,10 @@ const onShowQueue = () => {
   refs.cardSet.innerHTML = '';
 
   renderWatched(parsedMovieFromStorage);
+
+  getCountPages(parsedMovieFromStorage);
+
+  changeMoviesPage(pageCount, renderLibrary);
 };
 
 const renderWatched = async parsedMovieFromStorage => {
@@ -35,6 +45,7 @@ const renderWatched = async parsedMovieFromStorage => {
 const renderLibrary = movies => {
   const {
     id,
+    genre_ids,
     poster_path,
     original_title,
     title,
@@ -45,7 +56,13 @@ const renderLibrary = movies => {
 
   const productionYear = new Date(release_date).getFullYear().toString();
 
-  const genresList = genres.map(item => item.name).join(', ');
+  // const genresList = genres.map(item => item.id).join(', ');
+
+  // const alphabetGenres = getGenresById(genre_ids, genres);
+  // const genresMarkup = getGenresMarkup(alphabetGenres);
+  // console.log(movies);
+  // console.log(genre_ids);
+  // console.log(genresList);
 
   const markup = `<li class="card-set__item" data-id="${id}">
                 <div class="card-set__box-img"">
@@ -65,6 +82,10 @@ const renderLibrary = movies => {
                 </li>`;
 
   refs.cardSet.insertAdjacentHTML('afterbegin', markup);
+};
+
+const getCountPages = arr => {
+  pageCount = Math.ceil(arr.length / 10);
 };
 
 refs.showWatchedBtn.addEventListener('click', onShowWatched);
