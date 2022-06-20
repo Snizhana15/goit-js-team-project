@@ -10,6 +10,7 @@ const refs = {
 };
 
 let pageCount = 0;
+
 const onShowWatched = () => {
   const getWatchedMovie = localStorage.getItem('watched');
   const parsedWatchedMovie = JSON.parse(getWatchedMovie);
