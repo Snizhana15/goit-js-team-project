@@ -7,10 +7,10 @@ const refs = {
   backdropModalFilm: document.querySelector('.backdrop'),
   modalFilm: document.querySelector('.film-card__box'),
 };
-const spinModal = document.querySelector('.spinner--modal')
-console.log(spinModal);
+const spinModal = document.querySelector('.spinner--modal');
 
-const onClick = async e => {spinModal.classList.add('spinner')
+const onOpenModal = async e => {
+  spinModal.classList.add('spinner');
   if (!e.target.closest('.card-set__item')) {
     return;
   }
@@ -25,6 +25,9 @@ const onClick = async e => {spinModal.classList.add('spinner')
 
   renderModalFilm(infoAboutModalFilm);
   spinModal.classList.remove('spinner');
+
+  refs.body.addEventListener('keydown', onKeyPress);
+  refs.backdropModalFilm.addEventListener('click', onBackdropClick);
 };
 
 const renderModalFilm = modalFilm => {
@@ -91,7 +94,24 @@ const renderModalFilm = modalFilm => {
   refs.modalFilm.insertAdjacentHTML('beforeend', markupModalFilm);
 };
 
-refs.openModalFilm.addEventListener('click', onClick);
+const onKeyPress = e => {
+  if (e.code === 'Escape') {
+    console.log(e.code);
+    refs.backdropModalFilm.classList.add('visually-hidden');
+    refs.body.style.overflow = 'visible';
+    refs.body.removeEventListener('keydown', onKeyPress);
+  }
+};
+
+const onBackdropClick = e => {
+  if (e.target.closest('.film-card')) {
+    return;
+  }
+  refs.backdropModalFilm.classList.add('visually-hidden');
+  refs.body.style.overflow = 'visible';
+};
+
+refs.openModalFilm.addEventListener('click', onOpenModal);
 
 refs.closeModalFilm.addEventListener('click', () => {
   refs.backdropModalFilm.classList.add('visually-hidden');
