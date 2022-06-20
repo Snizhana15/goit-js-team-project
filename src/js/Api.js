@@ -116,7 +116,10 @@ async function getGenres() {
 
 async function getDataAboutSearchQuery(pageNumber) {
   try {
-    const { results: movies, total_pages: totalPages } = await getSearchQuery(searchQuery, pageNumber);
+    const { results: movies, total_pages: totalPages, total_results: totalResults } = await getSearchQuery(searchQuery, pageNumber);
+    if (totalResults === 0) {
+      showErrorText();
+    }
     return { movies, totalPages };
   } catch (error) {
     alert(error);
@@ -201,4 +204,13 @@ function renderMovieCard(movie, genres) {
 async function downloadSearchQuery() {
   const totalPages = await renderSearchQuery();
   changeMoviesPage(totalPages > 50 ? 50 : totalPages, renderSearchQuery);
+}
+
+// Show Error Text ===========================================================================================
+
+const errorText = document.querySelector('.header__error-text');
+
+function showErrorText() {
+  errorText.classList.remove('is-hidden');
+  setTimeout(() => errorText.classList.add('is-hidden'), 2000);
 }
