@@ -40,6 +40,8 @@ function changeMoviesPage(totalPages, renderMovies) {
       showFirstPageNumberListElement();
       setNewBtnPageNumbers();
     }
+
+    hideStartAndEndPageNumbersForMobile();
   }
 
   function onBackwardBtnClick() {
@@ -66,6 +68,8 @@ function changeMoviesPage(totalPages, renderMovies) {
       showLastPageNumberListElement();
       setNewBtnPageNumbers();
     }
+
+    hideStartAndEndPageNumbersForMobile();
   }
 
   function onPageNumberClick(e) {
@@ -135,6 +139,8 @@ function changeMoviesPage(totalPages, renderMovies) {
 
       setNewBtnPageNumbersOnEnd();
     }
+
+    hideStartAndEndPageNumbersForMobile();
   }
 
   function activateBtn(btnLink) {
@@ -166,6 +172,8 @@ function changeMoviesPage(totalPages, renderMovies) {
     activateBtn(forwardBtn);
 
     setNewBtnPageNumbersOnStart();
+
+    hideStartAndEndPageNumbersForMobile();
   }
 
   function renderEndPageNumberList() {
@@ -279,6 +287,13 @@ function changeMoviesPage(totalPages, renderMovies) {
   function hideArrowBtns() {
     forwardBtn.style.display = 'none';
     backwardBtn.style.display = 'none';
+  }
+
+  function hideStartAndEndPageNumbersForMobile() {
+    if (window.innerWidth < 768) {
+      hideFirstPageNumberListElement();
+      hideLastPageNumberListElement();
+    }
   }
 }
 
