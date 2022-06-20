@@ -76,11 +76,12 @@ export function getGenreList() {
 
 // import { getSearchQuery, getGenreList } from './Api';
 import { changeMoviesPage } from './change-movies-page';
+import debounce from 'lodash.debounce';
 
 const cardSet = document.querySelector('.card-set');
 const searchInput = document.querySelector('.header__form-input');
 
-searchInput.addEventListener('input', onSearch);
+searchInput.addEventListener('input', debounce(onSearch, 2000));
 
 let searchQuery = '';
 
