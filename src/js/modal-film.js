@@ -1,4 +1,9 @@
 import { getMovieById } from './Api';
+import {
+  changeWatchedButtonCondition,
+  changeQueueButtonCondition,
+} from './change-button-condition';
+import { parsLoc } from './change-button-condition';
 
 const refs = {
   openModalFilm: document.querySelector('.card-set'),
@@ -24,6 +29,12 @@ const onOpenModal = async e => {
   const infoAboutModalFilm = await getMovieById(getFilmId);
 
   renderModalFilm(infoAboutModalFilm);
+
+  const watchedBtn = document.querySelector('.description-button__watched');
+  const queueBtn = document.querySelector('.description-button__queue');
+  changeWatchedButtonCondition(getFilmId, watchedBtn);
+  changeQueueButtonCondition(getFilmId, queueBtn);
+
   spinModal.classList.remove('spinner');
 
   refs.body.addEventListener('keydown', onKeyPress);

@@ -15,6 +15,7 @@ function addWatched(e) {
 
   films.push(film);
   localStorage.setItem('watched', JSON.stringify(films));
+  alert('Ви дадали даний фільм до Watched');
 }
 function addQueue(e) {
   if (!e.target.closest('.description-button__queue')) {
@@ -30,4 +31,5 @@ function addQueue(e) {
 
   films.push(film);
   localStorage.setItem('queue', JSON.stringify(films));
+  alert('Ви дадали даний фільм до Queue');
 }
