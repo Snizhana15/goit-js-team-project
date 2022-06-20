@@ -119,6 +119,8 @@ async function getDataAboutSearchQuery(pageNumber) {
     const { results: movies, total_pages: totalPages, total_results: totalResults } = await getSearchQuery(searchQuery, pageNumber);
     if (totalResults === 0) {
       showErrorText();
+    } else {
+      hideErrorText();
     }
     return { movies, totalPages };
   } catch (error) {
@@ -209,8 +211,15 @@ async function downloadSearchQuery() {
 // Show Error Text ===========================================================================================
 
 const errorText = document.querySelector('.header__error-text');
+const errorImage = document.querySelector('.img-search-error');
 
 function showErrorText() {
   errorText.classList.remove('is-hidden');
-  setTimeout(() => errorText.classList.add('is-hidden'), 2000);
+  errorImage.classList.remove('is-hidden');
+  // setTimeout(() => { errorText.classList.add('is-hidden'); errorImage.classList.add('is-hidden') }, 5000);
+}
+
+function hideErrorText() {
+  errorText.classList.add('is-hidden');
+  errorImage.classList.add('is-hidden');
 }
