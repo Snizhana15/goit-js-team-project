@@ -18,21 +18,22 @@ export function getPopularMovies(pageNumber = 1) {
 }
 
 /*
-Функцию getMoviesBySearchQuery(searchQuery) используем для запроса при рендере карточек при поиске по ключевому слову.
+Функцию getMoviesBySearchQuery(searchQuery, pageNumber = 1) используем для запроса при рендере карточек при поиске по ключевому слову.
 Параметр searchQuery должен быть строкой из input-а поиска.
 */
 
-export function getSearchQuery(searchQuery, pageNumber = 1) {
-  const url = 'https://api.themoviedb.org/3';
-  return fetch(`${url}/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=${pageNumber}&include_adult=false`)
-    .then(response => response.json())
-    .then(data => {
-      if (!(data.success ?? true)) {
-        throw new Error(data.status_message);
-      }
-      return data;
-    });
-}
+// export function getSearchQuery(pageNumber = 1) {
+//   return fetch(
+//     `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=superman&language=uk&page=${pageNumber}&include_adult=false`
+//   )
+//     .then(response => response.json())
+//     .then(data => {
+//       if (!(data.success ?? true)) {
+//         throw new Error(data.status_message);
+//       }
+//       return data;
+//     });
+// }
 
 /*
 Функцию getMovieById(id) используем для запроса при отображении полной информации о фильме (модалка при клике на карточку).
@@ -62,6 +63,18 @@ export function getGenreList() {
   return fetch(
     `https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=uk`
   )
+    .then(response => response.json())
+    .then(data => {
+      if (!(data.success ?? true)) {
+        throw new Error(data.status_message);
+      }
+      return data;
+    });
+}
+
+export function getSearchQuery(searchQuery, pageNumber = 1) {
+  const url = 'https://api.themoviedb.org/3';
+  return fetch(`${url}/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=${pageNumber}&include_adult=false`)
     .then(response => response.json())
     .then(data => {
       if (!(data.success ?? true)) {
