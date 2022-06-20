@@ -15,3 +15,5 @@ downloadMainHomePage();
 import * as things from './js/modal-film';
 import * as elem from './js/modal-students';
 import * as elements from './js/localStorage';
+
+import './js/render-search-movies';
