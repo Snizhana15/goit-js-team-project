@@ -14,7 +14,6 @@ function onSearch(event) {
   event.preventDefault();
   searchQuery = event.target.value;
 
-  getSearchQuery();
   downloadSearchQuery();
 }
 
