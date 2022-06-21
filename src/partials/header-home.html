@@ -25,15 +25,11 @@
         </div>
 
         <label class="header__label">
-            <input 
-                class="header__input header__form-input" 
-                type="text" 
-                name="filmname" 
-                placeholder="Search movies..." 
-            />
-            
+            <input class="header__input header__form-input" type="text" name="filmname"
+                placeholder="Search movies..." />
+
             <div id="spinner" class="spinner--home"></div>
-            
+
             <svg class="header__icon--search" width="12" height="12">
                 <use href="./images/symbol.svg#icon-search"></use>
             </svg>
@@ -41,11 +37,14 @@
         </label>
 
         <p class="header__error-text is-hidden">Search result not successful. Enter the correct movie name</p>
-
+        <div class="wrapper">
+            <input type="checkbox" name="checkbox" class="switch">
+        </div>
     </div>
 
 </header>
 
 <body>
-    <img class="img-search-error is-hidden" src="./images/img-search-error.png" alt="Search Error" width="256" height="256">
+    <img class="img-search-error is-hidden" src="./images/img-search-error.png" alt="Search Error" width="256"
+        height="256">
 </body>

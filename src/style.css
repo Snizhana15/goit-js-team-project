@@ -1,0 +1,104 @@
+/* all variables */
+:root .lightTheme {
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ff6b01;
+  --color-text-black: #000000;
+  --color-text-grey: #545454;
+  --footer-background: #a19e9e;
+  --color-text-error: #ff001b;
+  --main-background: #ffffff;
+  --color-text-description: #8c8c8c;
+}
+:root .darkTheme {
+  --color-text-primary: #5a5858;
+  --color-text-secondary: #a75419;
+  --color-text-black: #525252;
+  --color-text-grey: #000000;
+  --footer-background: #a09b9b;
+  --color-text-error: #ff0000;
+  --main-background: #292929;
+  --color-text-description: #e4e4e4;
+}
+
+/* block header home */
+.header__title {
+  color: var(--color-text-primary);
+}
+.header__nav--link {
+  color: var(--color-text-primary);
+}
+.header__nav--link--current::after {
+  background-color: var(--color-text-secondary);
+}
+.header__input {
+  color: var(--color-text-primary);
+}
+.header__input::placeholder {
+  color: var(--color-text-primary);
+}
+.header__label::after {
+  border: 0.5px solid var(--footer-background);
+}
+.header__error-text {
+  color: var(--color-text-error);
+}
+/* block header library */
+.header-library__navigation--logo-title {
+  color: var(--color-text-primary);
+}
+.header-library__navigation--link {
+  color: var(--color-text-primary);
+}
+.header-library__button {
+  color: var(--color-text-black);
+
+  border: 1px solid var(--color-text-primary);
+}
+.header-library__button:focus {
+  background-color: var(--color-text-secondary);
+}
+
+/* block card and select page */
+.main {
+  background-color: var(--main-background);
+}
+
+/* block footer */
+footer {
+  color: var(--color-text-grey);
+  background-color: var(--footer-background);
+}
+.footer-modal-btn {
+  background-color: var(--footer-background);
+  color: var(--color-text-grey);
+}
+
+.footer-modal-btn:hover,
+.footer-modal-btn:focus {
+  color: var(--color-text-secondary);
+}
+/* block modal-film */
+.film-card {
+  background-color: var(--color-text-primary);
+}
+.description-set__text {
+  color: var(--color-text-description);
+}
+.description-set__rating {
+  background-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+}
+.description-set__separator {
+  color: var(--color-text-description);
+}
+.description-set__vote {
+  background: var(--footer-background);
+}
+.description-button {
+  background-color: var(--color-text-primary);
+  border: 1px solid var(--color-text-black);
+}
+.description-button:focus {
+  background-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+}
