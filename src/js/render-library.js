@@ -15,6 +15,7 @@ const queueSpinner = document.querySelector('.header-library--queue--spinner');
 let pageCount = 0;
 
 const onShowWatched = () => {
+  watchedSpinner.classList.add('spinner');
   const getWatchedMovie = localStorage.getItem('watched');
   const parsedWatchedMovie = JSON.parse(getWatchedMovie);
 
@@ -28,6 +29,7 @@ const onShowWatched = () => {
 };
 
 const onShowQueue = () => {
+  queueSpinner.classList.add('spinner');
   const getMovieFromStorage = localStorage.getItem('queue');
   const parsedMovieFromStorage = JSON.parse(getMovieFromStorage);
 
