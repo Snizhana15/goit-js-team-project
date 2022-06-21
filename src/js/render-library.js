@@ -1,8 +1,7 @@
-import { getStorage } from './modal-film';
 import { getMovieById } from './Api';
 import { changeMoviesPage } from './change-movies-page';
+import { getGenresMarkup } from './render-popular-movies';
 
-// import { renderPopularMovies } from './render-popular-movies';
 const refs = {
   cardSet: document.querySelector('.card-set'),
   showWatchedBtn: document.querySelector('.header-library__button--watched'),
@@ -12,27 +11,27 @@ const refs = {
 let pageCount = 0;
 
 const onShowWatched = () => {
-  const getWatchedMovie = localStorage.getItem('watched');
-  const parsedWatchedMovie = JSON.parse(getWatchedMovie);
+  const parsedWatchedMovies = JSON.parse(
+    localStorage.getItem('watched') || '[]'
+  );
 
   refs.cardSet.innerHTML = '';
 
-  renderWatched(parsedWatchedMovie);
+  renderWatched(parsedWatchedMovies);
 
-  getCountPages(parsedWatchedMovie);
+  getCountPages(parsedWatchedMovies);
 
   changeMoviesPage(pageCount, renderLibrary);
 };
 
 const onShowQueue = () => {
-  const getMovieFromStorage = localStorage.getItem('queue');
-  const parsedMovieFromStorage = JSON.parse(getMovieFromStorage);
+  const parsedQueueMovies = JSON.parse(localStorage.getItem('queue') || '[]');
 
   refs.cardSet.innerHTML = '';
 
-  renderWatched(parsedMovieFromStorage);
+  renderWatched(parsedQueueMovies);
 
-  getCountPages(parsedMovieFromStorage);
+  getCountPages(parsedQueueMovies);
 
   changeMoviesPage(pageCount, renderLibrary);
 };
@@ -43,10 +42,13 @@ const renderWatched = async parsedMovieFromStorage => {
   );
 };
 
+const getLibraryGenresById = (idList, genres) => {
+  return idList.map(id => genres.find(genre => genre.id === id).name);
+};
+
 const renderLibrary = movies => {
   const {
     id,
-    genre_ids,
     poster_path,
     original_title,
     title,
@@ -57,13 +59,11 @@ const renderLibrary = movies => {
 
   const productionYear = new Date(release_date).getFullYear().toString();
 
-  // const genresList = genres.map(item => item.id).join(', ');
+  const idList = genres.map(i => (i = i.id));
 
-  // const alphabetGenres = getGenresById(genre_ids, genres);
-  // const genresMarkup = getGenresMarkup(alphabetGenres);
-  // console.log(movies);
-  // console.log(genre_ids);
-  // console.log(genresList);
+  const alphabetGenres = getLibraryGenresById(idList, genres);
+
+  const genresMarkup = getGenresMarkup(alphabetGenres);
 
   const markup = `<li class="card-set__item" data-id="${id}">
                 <div class="card-set__box-img"">
@@ -74,8 +74,7 @@ const renderLibrary = movies => {
                 <h3 class="card-set__title">${title}</h3>
                 <div class="card-set__description">
                 <ul class="card-set__genre">
-                    <li class="card-set__genre-movie">Drama,&nbsp</li>
-                    <li class="card-set__genre-movie">Action&nbsp</li>
+                      ${genresMarkup}
                 </ul>
                     <span class="card-set__production-year">| ${productionYear}</span>
                     <span class="card-set__rating">${vote_average}</span>
@@ -89,5 +88,32 @@ const getCountPages = arr => {
   pageCount = Math.ceil(arr.length / 10);
 };
 
+const showLibraryPage = () => {
+  const parsedWatchedMovies = JSON.parse(
+    localStorage.getItem('watched') || '[]'
+  );
+
+  const parsedQueueMovies = JSON.parse(localStorage.getItem('queue') || '[]');
+
+  const allMoeviesList = [...parsedWatchedMovies, ...parsedQueueMovies];
+  const uniqueMoeviesList = allMoeviesList.filter(
+    (value, index, arr) => arr.indexOf(value) === index
+  );
+
+  refs.cardSet.innerHTML = '';
+
+  renderWatched(uniqueMoeviesList);
+
+  getCountPages(uniqueMoeviesList);
+
+  changeMoviesPage(pageCount, renderLibrary);
+};
+
+const downloadLibraryPage = showLibraryPage => {
+  showLibraryPage();
+};
+
 refs.showWatchedBtn.addEventListener('click', onShowWatched);
 refs.showQueueBtn.addEventListener('click', onShowQueue);
+
+export { showLibraryPage, downloadLibraryPage };

@@ -97,4 +97,4 @@ function renderMovieCard(movie, genres) {
         </li>`;
 }
 
-export { renderPopularMovies };
+export { renderPopularMovies, getGenresMarkup };
