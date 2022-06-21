@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 
 const cardSet = document.querySelector('.card-set');
 const searchInput = document.querySelector('.header__form-input');
+const spinner = document.getElementById('spinner');
 
 searchInput.addEventListener('input', debounce(onSearch, 1000));
 
@@ -28,7 +29,11 @@ async function getGenres() {
 
 async function getDataAboutSearchQuery(pageNumber) {
   try {
-    const { results: movies, total_pages: totalPages, total_results: totalResults } = await getSearchQuery(searchQuery, pageNumber);
+    const {
+      results: movies,
+      total_pages: totalPages,
+      total_results: totalResults,
+    } = await getSearchQuery(searchQuery, pageNumber);
     if (totalResults === 0) {
       showErrorText();
     } else {
@@ -41,6 +46,7 @@ async function getDataAboutSearchQuery(pageNumber) {
 }
 
 async function renderSearchQuery(pageNumber) {
+  spinner.classList.add('spinner');
   const genres = await getGenres();
   const { movies, totalPages } = await getDataAboutSearchQuery(pageNumber);
 
@@ -50,7 +56,7 @@ async function renderSearchQuery(pageNumber) {
 
   cardSet.innerHTML = '';
   cardSet.insertAdjacentHTML('afterbegin', cardsMarkup);
-
+  spinner.classList.remove('spinner');
   return totalPages;
 }
 
@@ -114,7 +120,7 @@ function renderMovieCard(movie, genres) {
             </div>
         </li>`;
 }
-    
+
 async function downloadSearchQuery() {
   const totalPages = await renderSearchQuery();
   changeMoviesPage(totalPages > 50 ? 50 : totalPages, renderSearchQuery);

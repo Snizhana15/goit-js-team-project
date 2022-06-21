@@ -1,6 +1,7 @@
 import { getPopularMovies, getGenreList } from './Api';
 
 const cardSet = document.querySelector('.card-set');
+const spinner = document.getElementById('spinner');
 
 async function getGenres() {
   try {
@@ -23,6 +24,7 @@ async function getDataAboutPopularMovies(pageNumber) {
 }
 
 async function renderPopularMovies(pageNumber) {
+  spinner.classList.add('spinner');
   const genres = await getGenres();
   const { movies, totalPages } = await getDataAboutPopularMovies(pageNumber);
 
@@ -32,7 +34,7 @@ async function renderPopularMovies(pageNumber) {
 
   cardSet.innerHTML = '';
   cardSet.insertAdjacentHTML('afterbegin', cardsMarkup);
-
+  spinner.classList.remove('spinner');
   return totalPages;
 }
 
