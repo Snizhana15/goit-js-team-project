@@ -8,14 +8,15 @@ function addWatched(e) {
   const getFilmId = e.target.closest('.description-button__watched').dataset.id;
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
   const film = getFilmId;
-
+  const watchedBtn = e.target.closest('.description-button__watched');
   if (films.includes(film)) {
     return;
   }
-
+  watchedBtn.textContent = 'in watched';
+  watchedBtn.style.backgroundColor = 'lightgray';
+  watchedBtn.setAttribute('disabled', '');
   films.push(film);
   localStorage.setItem('watched', JSON.stringify(films));
-  alert('Ви дадали даний фільм до Watched');
 }
 function addQueue(e) {
   if (!e.target.closest('.description-button__queue')) {
@@ -24,12 +25,13 @@ function addQueue(e) {
   const getFilmId = e.target.closest('.description-button__queue').dataset.id;
   const films = JSON.parse(localStorage.getItem('queue') || '[]');
   const film = getFilmId;
-
+  const queueBtn = e.target.closest('.description-button__queue');
   if (films.includes(film)) {
     return;
   }
-
+  queueBtn.textContent = 'in queue';
+  queueBtn.style.backgroundColor = 'lightgray';
+  queueBtn.setAttribute('disabled', '');
   films.push(film);
   localStorage.setItem('queue', JSON.stringify(films));
-  alert('Ви дадали даний фільм до Queue');
 }
