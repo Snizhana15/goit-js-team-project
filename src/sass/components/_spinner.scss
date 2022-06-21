@@ -6,15 +6,14 @@
   margin-left: 10px;
 }
 
-.spinner--home{
-    display: inline-block;
-    position: absolute;
-    top: 10%;
-  
+.spinner--home {
+  display: inline-block;
+  position: absolute;
+  top: 10%;
 }
 
 .spinner:after {
-  content: " ";
+  content: ' ';
   display: block;
   border-radius: 50%;
   width: 0;
@@ -22,7 +21,7 @@
   margin: auto;
   box-sizing: border-box;
   border: 6px solid #fff;
-  border-color: rgb(26, 11, 11) transparent rgb(49, 36, 36) transparent;
+  border-color: rgb(121, 121, 121) transparent rgb(121, 121, 121) transparent;
   animation: spinner 1.2s infinite;
 }
 

@@ -7,7 +7,10 @@ const refs = {
   showWatchedBtn: document.querySelector('.header-library__button--watched'),
   showQueueBtn: document.querySelector('.header-library__button--queue'),
 };
-
+const watchedSpinner = document.querySelector(
+  '.header-library--watched--spinner'
+);
+const queueSpinner = document.querySelector('.header-library--queue--spinner');
 let pageCount = 0;
 
 const onShowWatched = () => {
@@ -82,6 +85,8 @@ const renderLibrary = movies => {
                 </li>`;
 
   refs.cardSet.insertAdjacentHTML('afterbegin', markup);
+  watchedSpinner.classList.remove('spinner');
+  queueSpinner.classList.remove('spinner');
 };
 
 const getCountPages = arr => {

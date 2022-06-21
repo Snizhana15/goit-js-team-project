@@ -8,7 +8,7 @@
                             <use href="./images/symbol.svg#icon-filmoteka"></use>
                         </svg>
                         <span class="header-library__navigation--logo-title">
-                        Filmoteka
+                            Filmoteka
                         </span>
                     </a>
                 </li>
@@ -18,7 +18,8 @@
                     </a>
                 </li>
                 <li class="header-library__navigation--item">
-                    <a href="./library.html" class="header-library__navigation--link header-library__navigation--link-current">
+                    <a href="./library.html"
+                        class="header-library__navigation--link header-library__navigation--link-current">
                         My library
                     </a>
                 </li>
@@ -26,10 +27,14 @@
         </nav>
         <ul class="header-library__button-list">
             <li class="header-library__button-item">
-                <button class="header-library__button header-library__button--watched" type="button">Watched</button>
+                <button class="header-library__button header-library__button--watched" type="button">Watched
+                    <div class="header-library--watched--spinner"></div>
+                </button>
             </li>
             <li class="header-library__button-item">
-                <button class="header-library__button header-library__button--queue" type="button">queue</button>
+                <button class="header-library__button header-library__button--queue" type="button">queue
+                    <div class="header-library--queue--spinner"></div>
+                </button>
             </li>
         </ul>
     </div>
