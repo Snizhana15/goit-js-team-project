@@ -45,11 +45,6 @@
 .header__container {
     padding-top: 40px;
     padding-bottom: 60px;
-
-    @media screen and (min-width: 1024px) {
-            padding-left: 72px;
-            padding-right: 72px;
-        }
 }
 
 .header-library__navigation {

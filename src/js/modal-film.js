@@ -3,7 +3,6 @@ import {
   changeWatchedButtonCondition,
   changeQueueButtonCondition,
 } from './change-button-condition';
-import { parsLoc } from './change-button-condition';
 
 const refs = {
   openModalFilm: document.querySelector('.card-set'),
