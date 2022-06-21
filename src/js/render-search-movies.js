@@ -86,7 +86,7 @@ function getGenresMarkup(genres) {
     default:
       genresMarkup = `<li class="card-set__genre-movie">${genres[0]},&nbsp</li>
                       <li class="card-set__genre-movie">${genres[1]},&nbsp</li>
-                      <li class="card-set__genre-movie">Інші</li>`;
+                      <li class="card-set__genre-movie">Other</li>`;
   }
 
   return genresMarkup;
