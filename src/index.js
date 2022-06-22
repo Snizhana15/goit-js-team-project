@@ -4,7 +4,7 @@ import './js/render-search-movies';
 
 async function downloadMainHomePage() {
   const totalPages = await renderPopularMovies();
-  changeMoviesPage(totalPages > 50 ? 50 : totalPages, renderPopularMovies);
+  changeMoviesPage(totalPages, renderPopularMovies);
 }
 
 downloadMainHomePage();
