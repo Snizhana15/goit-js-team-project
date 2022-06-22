@@ -147,6 +147,9 @@ const errorText = document.querySelector('.header__error-text');
 
 function showErrorText() {
   errorText.classList.remove('is-hidden');
+  setTimeout(() => {
+    errorText.classList.add('is-hidden');
+  }, 3000);
 }
 
 function hideErrorText() {
