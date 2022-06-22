@@ -4,15 +4,15 @@
   --color-text-secondary: #ff6b01;
   --color-text-black: #000000;
   --color-text-grey: #545454;
-  --footer-background: #a19e9e;
+  --footer-background: #f7f7f7;
   --color-text-error: #ff001b;
   --main-background: #ffffff;
   --color-text-description: #8c8c8c;
 }
 :root .darkTheme {
-  --color-text-primary: #5a5858;
-  --color-text-secondary: #a75419;
-  --color-text-black: #525252;
+  --color-text-primary: #a3a3a3;
+  --color-text-secondary: #d36a1f;
+  --color-text-black: #bebebe;
   --color-text-grey: #000000;
   --footer-background: #a09b9b;
   --color-text-error: #ff0000;
@@ -59,10 +59,11 @@
 }
 
 /* block card and select page */
-.main {
+body {
   background-color: var(--main-background);
 }
-
+.card-set__title {
+  color: :var(--color-text-black);}
 /* block footer */
 footer {
   color: var(--color-text-grey);
