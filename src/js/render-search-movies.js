@@ -1,4 +1,5 @@
 import { getSearchQuery, getGenreList } from './Api';
+import { renderPopularMovies } from './render-popular-movies';
 import { changeMoviesPage } from './change-movies-page';
 import debounce from 'lodash.debounce';
 
@@ -13,9 +14,11 @@ let searchQuery = '';
 function onSearch(event) {
   event.preventDefault();
   searchQuery = event.target.value;
-
-  downloadSearchQuery();
+  if (searchQuery === '') {
+    downloadMainHomePage();
+  } else downloadSearchQuery();
 }
+
 
 async function getGenres() {
   try {
@@ -35,6 +38,7 @@ async function getDataAboutSearchQuery(pageNumber) {
     } = await getSearchQuery(searchQuery, pageNumber);
     if (totalResults === 0) {
       showErrorText();
+      // downloadMainHomePage();
     } else {
       hideErrorText();
     }
@@ -106,8 +110,7 @@ function renderMovieCard(movie, genres) {
                 loading="lazy"
                 src="https://image.tmdb.org/t/p/original${poster_path}"
                 alt="${original_title}"
-                class="card-set__img"
-                
+                class="card-set__img"  
             />
             </div>
             <h3 class="card-set__title">${title}</h3>
@@ -122,7 +125,12 @@ function renderMovieCard(movie, genres) {
 
 async function downloadSearchQuery() {
   const totalPages = await renderSearchQuery();
-  changeMoviesPage(totalPages > 50 ? 50 : totalPages, renderSearchQuery);
+  changeMoviesPage(totalPages, renderSearchQuery);
+}
+
+async function downloadMainHomePage() {
+  const totalPages = await renderPopularMovies();
+  changeMoviesPage(totalPages, renderPopularMovies);
 }
 
 export { renderSearchQuery };
@@ -130,15 +138,15 @@ export { renderSearchQuery };
 // Show Error Text ===========================================================================================
 
 const errorText = document.querySelector('.header__error-text');
-const errorImage = document.querySelector('.img-search-error');
+// const errorImage = document.querySelector('.img-search-error');
 
 function showErrorText() {
   errorText.classList.remove('is-hidden');
-  errorImage.classList.remove('is-hidden');
+  // errorImage.classList.remove('is-hidden');
   // setTimeout(() => { errorText.classList.add('is-hidden'); errorImage.classList.add('is-hidden') }, 5000);
 }
 
 function hideErrorText() {
   errorText.classList.add('is-hidden');
-  errorImage.classList.add('is-hidden');
+  // errorImage.classList.add('is-hidden');
 }
