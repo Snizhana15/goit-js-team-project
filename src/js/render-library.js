@@ -81,7 +81,7 @@ const renderLibrary = movies => {
                 <ul class="card-set__genre">
                       ${genresMarkup}
                 </ul>
-                    <span class="card-set__production-year">| ${productionYear}</span>
+                    <span class="card-set__production-year">&nbsp| ${productionYear}&nbsp</span>
                     <span class="card-set__rating">${vote_average}</span>
                 </div>
                 </li>`;

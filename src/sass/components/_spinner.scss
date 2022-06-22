@@ -5,11 +5,19 @@
   height: 10px;
   margin-left: 10px;
 }
-
+.header-library__button .spinner {
+  height: 15px;
+  margin-left: 5px;
+}
 .spinner--home {
+  width: 30px;
+  height: 30px;
+  margin-left: 0px;
   display: inline-block;
   position: absolute;
-  top: 10%;
+  top: 75px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .spinner:after {
@@ -20,11 +28,16 @@
   height: 0;
   margin: auto;
   box-sizing: border-box;
-  border: 6px solid #fff;
-  border-color: rgb(121, 121, 121) transparent rgb(121, 121, 121) transparent;
+  border: 15px solid #fff;
+  border-color: rgb(148, 94, 94) transparent rgb(148, 94, 94) transparent;
   animation: spinner 1.2s infinite;
 }
 
+.header-library__button .spinner:after {
+  border: 10px solid #fff;
+  border-color: #fff #0000;
+  animation: spinner 1.2s infinite;
+}
 @keyframes spinner {
   0% {
     transform: rotate(0);

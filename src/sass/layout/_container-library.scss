@@ -74,11 +74,6 @@
 .card-set__genre-movie,
 .card-set__production-year {
   color: #ff6b08;
- 
-
-  @media screen and(max-width:768px) {
-    margin-right: 9px;
-  }
 }
 
 .card-set__description {
@@ -87,7 +82,7 @@
 }
 
 .card-set__rating {
-  line-height: 1.16;
+  line-height: 1.2;
   border-radius: 5px;
   padding-top: 1px;
   padding-bottom: 1px;
