@@ -1,4 +1,5 @@
 import { getPopularMovies, getGenreList } from './Api';
+import * as image from '../images/movie.jpg';
 
 const cardSet = document.querySelector('.card-set');
 const spinner = document.getElementById('spinner');
@@ -24,8 +25,17 @@ async function getDataAboutPopularMovies(pageNumber) {
 }
 
 async function renderPopularMovies(pageNumber) {
+  let genres = null;
+
   spinner.classList.add('spinner');
-  const genres = await getGenres();
+
+  if (!localStorage.getItem('genres')) {
+    genres = await getGenres();
+    localStorage.setItem('genres', JSON.stringify(genres));
+  } else {
+    genres = JSON.parse(localStorage.getItem('genres'));
+  }
+
   const { movies, totalPages } = await getDataAboutPopularMovies(pageNumber);
 
   const cardsMarkup = movies
@@ -46,6 +56,10 @@ function getGenresMarkup(genres) {
   let genresMarkup = '';
 
   switch (genres.length) {
+    case 0:
+      genresMarkup = `<li class="card-set__genre-movie">Genre's list is empty</li>`;
+      break;
+
     case 1:
       genresMarkup = `<li class="card-set__genre-movie">${genres[0]}</li>`;
       break;
@@ -76,14 +90,19 @@ function renderMovieCard(movie, genres) {
 
   const alphabetGenres = getGenresById(genre_ids, genres);
   const genresMarkup = getGenresMarkup(alphabetGenres);
-  const productionYear = new Date(release_date).getFullYear().toString();
+  const productionYear = release_date
+    ? new Date(release_date).getFullYear().toString()
+    : 'Unknown';
+  const posterPath = poster_path
+    ? `https://image.tmdb.org/t/p/original${poster_path}`
+    : `${image}`;
 
   return `
         <li class="card-set__item" data-id="${id}">
             <div class="card-set__box-img">
             <img
                 loading="lazy"
-                src="https://image.tmdb.org/t/p/original${poster_path}"
+                src="${posterPath}"
                 alt="${original_title}"
                 class="card-set__img"
                 
