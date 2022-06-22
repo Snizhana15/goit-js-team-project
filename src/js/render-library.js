@@ -14,7 +14,7 @@ const watchedSpinner = document.querySelector(
 const queueSpinner = document.querySelector('.header-library--queue--spinner');
 
 let pageCount = 0;
-const moviesbyPage = 4;
+const moviesbyPage = 10;
 
 const getWatchedList = () => {
   const parsedWatchedMovies = JSON.parse(
