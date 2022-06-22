@@ -92,7 +92,7 @@ const renderLibrary = movies => {
 };
 
 const getCountPages = arr => {
-  pageCount = Math.ceil(arr.length / 10);
+  pageCount = Math.ceil(arr.length / 20);
 };
 
 const showLibraryPage = () => {
