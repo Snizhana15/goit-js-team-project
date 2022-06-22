@@ -1,15 +1,70 @@
-let pageNumber = 1;
+import * as arrowIcons from '../images/symbol.svg';
 
-const backwardBtn = document.querySelector('[data-move="backward"]');
-const forwardBtn = document.querySelector('[data-move="forward"]');
-const pageNumberList = document.querySelector('.number-page');
-const cardSet = document.querySelector('.card-set');
+const moviesNavigationMarkup = `<li class="movies-navigation__item">
+    <button
+      type="button"
+      class="movies-navigation__arrow-btn"
+      data-move="backward"
+    >
+      <svg class="movies-navigation__icon-arrow">
+        <use href="${arrowIcons}#icon-arrow-left"></use>
+      </svg>
+    </button>
+  </li>
+  <li class="movies-navigation__item">
+    <ul class="number-page">
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">1</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">13</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">14</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">15</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">16</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">17</button>
+      </li>
+      <li class="number-page__item">
+        <button type="button" class="number-page__btn">20</button>
+      </li>
+    </ul>
+  </li>
+  <li class="movies-navigation__item">
+    <button
+      type="button"
+      class="movies-navigation__arrow-btn"
+      data-move="forward"
+    >
+      <svg class="movies-navigation__icon-arrow">
+        <use href="${arrowIcons}#icon-arrow-right"></use>
+      </svg>
+    </button>
+  </li>`;
+
+const moviesNavigation = document.querySelector('.movies-navigation');
 
 /*
   Функция changeMoviesPage принимает в качестве первого аргумента общее количество страниц, доступных для пагинации, а в качестве второго - функцию для рендера карточек фильмов.
 */
 
 function changeMoviesPage(totalPages, renderMovies) {
+  let pageNumber = 1;
+
+  moviesNavigation.innerHTML = '';
+  moviesNavigation.insertAdjacentHTML('afterbegin', moviesNavigationMarkup);
+
+  const backwardBtn = document.querySelector('[data-move="backward"]');
+  const forwardBtn = document.querySelector('[data-move="forward"]');
+  const pageNumberList = document.querySelector('.number-page');
+  const cardSet = document.querySelector('.card-set');
+
   renderStartPageNumberList(totalPages);
 
   backwardBtn.addEventListener('click', onBackwardBtnClick);

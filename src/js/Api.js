@@ -24,7 +24,9 @@ export function getPopularMovies(pageNumber = 1) {
 
 export function getSearchQuery(searchQuery, pageNumber = 1) {
   const url = 'https://api.themoviedb.org/3';
-  return fetch(`${url}/search/movie?api_key=${KEY}&query=${searchQuery}&language=uk&page=${pageNumber}&include_adult=false`)
+  return fetch(
+    `${url}/search/movie?api_key=${KEY}&query=${searchQuery}&language=eng&page=${pageNumber}&include_adult=false`
+  )
     .then(response => response.json())
     .then(data => {
       if (!(data.success ?? true)) {
@@ -41,7 +43,7 @@ export function getSearchQuery(searchQuery, pageNumber = 1) {
 
 export function getMovieById(id) {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=uk`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=eng`
   )
     .then(response => response.json())
     .then(data => {
@@ -60,7 +62,7 @@ export function getMovieById(id) {
 
 export function getGenreList() {
   return fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=uk`
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=eng`
   )
     .then(response => response.json())
     .then(data => {

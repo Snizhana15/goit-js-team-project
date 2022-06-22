@@ -7,10 +7,14 @@ const refs = {
   showWatchedBtn: document.querySelector('.header-library__button--watched'),
   showQueueBtn: document.querySelector('.header-library__button--queue'),
 };
-
+const watchedSpinner = document.querySelector(
+  '.header-library--watched--spinner'
+);
+const queueSpinner = document.querySelector('.header-library--queue--spinner');
 let pageCount = 0;
 
 const onShowWatched = () => {
+  watchedSpinner.classList.add('spinner');
   const parsedWatchedMovies = JSON.parse(
     localStorage.getItem('watched') || '[]'
   );
@@ -25,6 +29,7 @@ const onShowWatched = () => {
 };
 
 const onShowQueue = () => {
+  queueSpinner.classList.add('spinner');
   const parsedQueueMovies = JSON.parse(localStorage.getItem('queue') || '[]');
 
   refs.cardSet.innerHTML = '';
@@ -76,16 +81,18 @@ const renderLibrary = movies => {
                 <ul class="card-set__genre">
                       ${genresMarkup}
                 </ul>
-                    <span class="card-set__production-year">| ${productionYear}</span>
+                    <span class="card-set__production-year">&nbsp| ${productionYear}&nbsp</span>
                     <span class="card-set__rating">${vote_average}</span>
                 </div>
                 </li>`;
 
   refs.cardSet.insertAdjacentHTML('afterbegin', markup);
+  watchedSpinner.classList.remove('spinner');
+  queueSpinner.classList.remove('spinner');
 };
 
 const getCountPages = arr => {
-  pageCount = Math.ceil(arr.length / 10);
+  pageCount = Math.ceil(arr.length / 20);
 };
 
 const showLibraryPage = () => {
