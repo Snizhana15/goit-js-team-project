@@ -186,7 +186,7 @@ const renderByPage = (a, arrayAllMoviesForRender) => {
 const onClickWatched = e => {
   const watched = getWatchedList();
 
-  getNumberPage = Number(e.target.closest('.pagination__button').id);
+  const getNumberPage = Number(e.target.closest('.pagination__button').id);
 
   renderByPage(getNumberPage, watched);
 };
@@ -194,7 +194,7 @@ const onClickWatched = e => {
 const onClickQueue = e => {
   const queue = getQueueList();
 
-  getNumberPage = Number(e.target.closest('.pagination__button').id);
+  const getNumberPage = Number(e.target.closest('.pagination__button').id);
 
   renderByPage(getNumberPage, queue);
 };
@@ -202,7 +202,7 @@ const onClickQueue = e => {
 const onClickLibrary = e => {
   const library = getLibraryList();
 
-  getNumberPage = Number(e.target.closest('.pagination__button').id);
+  const getNumberPage = Number(e.target.closest('.pagination__button').id);
 
   renderByPage(getNumberPage, library);
 };
