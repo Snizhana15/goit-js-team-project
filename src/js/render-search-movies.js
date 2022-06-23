@@ -1,6 +1,7 @@
 import { getSearchQuery, getGenreList } from './Api';
 import { renderPopularMovies } from './render-popular-movies';
 import { changeMoviesPage } from './change-movies-page';
+import *as image from '../images/no-poster.png';
 import debounce from 'lodash.debounce';
 
 const cardSet = document.querySelector('.card-set');
@@ -13,7 +14,7 @@ let searchQuery = '';
 
 function onSearch(event) {
   event.preventDefault();
-  searchQuery = event.target.value;
+  searchQuery = event.target.value.trim();
   if (searchQuery === '') {
     downloadMainHomePage();
   } else downloadSearchQuery();
@@ -38,7 +39,7 @@ async function getDataAboutSearchQuery(pageNumber) {
     } = await getSearchQuery(searchQuery, pageNumber);
     if (totalResults === 0) {
       showErrorText();
-      // downloadMainHomePage();
+      downloadMainHomePage();
     } else {
       hideErrorText();
     }
@@ -101,14 +102,19 @@ function renderMovieCard(movie, genres) {
 
   const alphabetGenres = getGenresById(genre_ids, genres);
   const genresMarkup = getGenresMarkup(alphabetGenres);
-  const productionYear = new Date(release_date).getFullYear().toString();
+  const productionYear = release_date
+    ? new Date(release_date).getFullYear().toString()
+    : 'Unknown';
+  const posterPath = poster_path
+    ? `https://image.tmdb.org/t/p/original${poster_path}`
+    : `${image}`;
 
   return `
         <li class="card-set__item" data-id="${id}">
             <div class="card-set__box-img">
             <img
                 loading="lazy"
-                src="https://image.tmdb.org/t/p/original${poster_path}"
+                src="${posterPath}"
                 alt="${original_title}"
                 class="card-set__img"  
             />
@@ -138,15 +144,14 @@ export { renderSearchQuery };
 // Show Error Text ===========================================================================================
 
 const errorText = document.querySelector('.header__error-text');
-// const errorImage = document.querySelector('.img-search-error');
 
 function showErrorText() {
   errorText.classList.remove('is-hidden');
-  // errorImage.classList.remove('is-hidden');
-  // setTimeout(() => { errorText.classList.add('is-hidden'); errorImage.classList.add('is-hidden') }, 5000);
+  setTimeout(() => {
+    errorText.classList.add('is-hidden');
+  }, 3000);
 }
 
 function hideErrorText() {
   errorText.classList.add('is-hidden');
-  // errorImage.classList.add('is-hidden');
 }

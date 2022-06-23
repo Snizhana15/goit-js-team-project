@@ -74,6 +74,11 @@
 .card-set__genre-movie,
 .card-set__production-year {
   color: #ff6b08;
+ 
+
+  @media screen and(max-width:768px) {
+    margin-right: 9px;
+  }
 }
 
 .card-set__description {
@@ -82,7 +87,7 @@
 }
 
 .card-set__rating {
-  line-height: 1.2;
+  line-height: 1.16;
   border-radius: 5px;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -92,3 +97,62 @@
   background-color: #ff6b08;
   color: #ffffff;
 }
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.pagination__item {
+  margin-right: 16px;
+}
+
+.pagination__button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+  
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      text-decoration: none;
+      background-color: #ff6b08;
+      width: 40px;
+      color: #fff;
+    }
+
+
+}
+
+.pagination__button--current {
+      background-color: #ff6b08;
+      color: #fff;
+      width: 40px;
+
+}
+
+// .pagination {
+//   margin-top: 40px;
+//   display: flex;
+//   justify-content: center;
+
+//   &__item {
+//     margin-right: 10px;
+//   }
+
+//   &__button {
+//     width: 50px;
+//     height: 30px;
+//     cursor: pointer;
+//   }
+// }
