@@ -1,4 +1,3 @@
-import { getMovieById } from './Api';
 import { getGenresMarkup } from './render-popular-movies';
 
 const refs = {
@@ -14,7 +13,7 @@ const watchedSpinner = document.querySelector(
 const queueSpinner = document.querySelector('.header-library--queue--spinner');
 
 let pageCount = 0;
-const moviesbyPage = 10;
+const moviesbyPage = 6;
 
 const getWatchedList = () => {
   const parsedWatchedMovies = JSON.parse(
@@ -37,8 +36,10 @@ const getLibraryList = () => {
 
   const parsedAllMoeviesList = [...parsedWatchedMovies, ...parsedQueueMovies];
   const parsedUniqueMoeviesList = parsedAllMoeviesList.filter(
-    (value, index, arr) => arr.indexOf(value) === index
+    (movie, movieIdx, movies) =>
+      movies.findIndex(item => item.id === movie.id) === movies.indexOf(movie)
   );
+
   return parsedUniqueMoeviesList;
 };
 
@@ -94,10 +95,8 @@ const showLibraryPage = () => {
   refs.paginationSet.addEventListener('click', onClickLibrary);
 };
 
-const renderWatched = async parsedMovieFromStorage => {
-  const getMovies = await parsedMovieFromStorage.map(moevieId =>
-    getMovieById(moevieId).then(response => renderLibrary(response))
-  );
+const renderWatched = parsedMovieFromStorage => {
+  parsedMovieFromStorage.map(renderLibrary);
 };
 
 const getLibraryGenresById = (idList, genres) => {
@@ -166,6 +165,11 @@ const renderByPage = (a, arrayAllMoviesForRender) => {
   refs.cardSet.innerHTML = '';
   renderWatched(arrayMoviesByPage);
   markupNumPage(pageCount);
+
+  const previousBtn = document.querySelector('.pagination__button--current');
+  previousBtn.classList.remove('pagination__button--current');
+  const currentBtn = document.querySelector(`[id="${a}"]`);
+  currentBtn.classList.add('pagination__button--current');
 };
 
 const onClickWatched = e => {
@@ -188,9 +192,6 @@ const onClickLibrary = e => {
   const library = getLibraryList();
 
   getNumberPage = Number(e.target.closest('.pagination__button').id);
-  btn = e.target.closest('.pagination__button');
-  console.log(btn);
-  btn.classList.add('pagination__button--current');
 
   renderByPage(getNumberPage, library);
 };
@@ -201,9 +202,17 @@ const markupNumPage = pageCount => {
   markupEmpty = [];
 
   for (let i = 1; i <= pageCount; i++) {
-    const page = `<li class="pagination__item">
+    let page = '';
+
+    if (i === 1) {
+      page = `<li class="pagination__item">
+        <button class="pagination__button pagination__button--current" id="${i}">${i}</button>
+      </li>`;
+    } else {
+      page = `<li class="pagination__item">
         <button class="pagination__button" id="${i}">${i}</button>
       </li>`;
+    }
 
     markupEmpty.push(page);
   }
