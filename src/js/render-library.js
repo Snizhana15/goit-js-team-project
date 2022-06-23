@@ -55,6 +55,17 @@ const onShowWatched = () => {
   const startPageWatched = watchedList.slice(0, moviesbyPage);
   refs.cardSet.innerHTML = '';
 
+  if (watchedList.length === 0) {
+    const emptyMarkup = `<div class="library__empty-container">
+                          <p class="library__empty-text">Your watched list is empty. Please, add some movies!!!</p>
+                          <img src="${image}" alt="Empty library image" width="500" height="500">
+                        </div>`;
+
+    refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
+    watchedSpinner.classList.remove('spinner');
+    return;
+  }
+
   getCountPages(watchedList);
   renderWatched(startPageWatched);
   markupNumPage(pageCount);
@@ -72,6 +83,17 @@ const onShowQueue = () => {
   const startPageQueue = queueList.slice(0, moviesbyPage);
 
   refs.cardSet.innerHTML = '';
+
+  if (queueList.length === 0) {
+    const emptyMarkup = `<div class="library__empty-container">
+                          <p class="library__empty-text">Your queue list is empty. Please, add some movies!!!</p>
+                          <img src="${image}" alt="Empty library image" width="500" height="500">
+                        </div>`;
+
+    refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
+    queueSpinner.classList.remove('spinner');
+    return;
+  }
 
   getCountPages(queueList);
   renderWatched(startPageQueue);
