@@ -43,7 +43,9 @@ const getLibraryList = () => {
 };
 
 const onShowWatched = () => {
-  watchedSpinner.classList.add('spinner');
+  if (localStorage.getItem('watched') !== null) {
+    watchedSpinner.classList.add('spinner');
+  }
 
   refs.paginationSet.removeEventListener('click', onClickLibrary);
   refs.paginationSet.removeEventListener('click', onClickQueue);
@@ -61,7 +63,9 @@ const onShowWatched = () => {
 };
 
 const onShowQueue = () => {
-  queueSpinner.classList.add('spinner');
+  if (localStorage.getItem('queue') !== null) {
+    queueSpinner.classList.add('spinner');
+  }
 
   refs.paginationSet.removeEventListener('click', onClickLibrary);
   refs.paginationSet.removeEventListener('click', onClickWatched);
