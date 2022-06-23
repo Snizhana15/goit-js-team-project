@@ -74,7 +74,6 @@
 .card-set__genre-movie,
 .card-set__production-year {
   color: #ff6b08;
- 
 
   @media screen and(max-width:768px) {
     margin-right: 9px;
@@ -103,6 +102,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .pagination__item {
@@ -110,35 +110,31 @@
 }
 
 .pagination__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration: none;
+    background-color: #ff6b08;
     width: 40px;
-  
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-      text-decoration: none;
-      background-color: #ff6b08;
-      width: 40px;
-      color: #fff;
-    }
-
-
+    color: #fff;
+  }
 }
 
 .pagination__button--current {
-      background-color: #ff6b08;
-      color: #fff;
-      width: 40px;
-
+  background-color: #ff6b08;
+  color: #fff;
+  width: 40px;
 }
 
 // .pagination {
