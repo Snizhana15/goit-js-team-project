@@ -3,6 +3,11 @@ import {
   changeWatchedButtonCondition,
   changeQueueButtonCondition,
 } from './change-button-condition';
+import { addToLocalStorage } from './localStorage';
+import {
+  changeQueueButtonCondition,
+  changeWatchedButtonCondition,
+} from './change-button-condition';
 
 const refs = {
   openModalFilm: document.querySelector('.card-set'),
@@ -25,12 +30,35 @@ const onOpenModal = async e => {
 
   const getFilmId = e.target.closest('.card-set__item').dataset.id;
 
-  const infoAboutModalFilm = await getMovieById(getFilmId);
+  let infoAboutModalFilm = null;
+  const presenceInWatched = localStorage.getItem('watched')
+    ? JSON.parse(localStorage.getItem('watched')).find(
+        ({ id }) => id === Number(getFilmId)
+      )
+    : false;
+  const presenceInQueue = localStorage.getItem('queue')
+    ? JSON.parse(localStorage.getItem('queue')).find(
+        ({ id }) => id === Number(getFilmId)
+      )
+    : false;
+
+  if (!presenceInWatched && !presenceInQueue)
+    infoAboutModalFilm = await getMovieById(getFilmId);
+
+  if (presenceInWatched) {
+    infoAboutModalFilm = presenceInWatched;
+  }
+
+  if (presenceInQueue) {
+    infoAboutModalFilm = presenceInQueue;
+  }
 
   renderModalFilm(infoAboutModalFilm);
+  addToLocalStorage(infoAboutModalFilm);
 
   const watchedBtn = document.querySelector('.description-button__watched');
   const queueBtn = document.querySelector('.description-button__queue');
+
   changeWatchedButtonCondition(getFilmId, watchedBtn);
   changeQueueButtonCondition(getFilmId, queueBtn);
 

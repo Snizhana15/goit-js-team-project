@@ -1,7 +1,7 @@
 import { getSearchQuery, getGenreList } from './Api';
 import { renderPopularMovies } from './render-popular-movies';
 import { changeMoviesPage } from './change-movies-page';
-import *as image from '../images/no-poster.png';
+import * as image from '../images/no-poster.png';
 import debounce from 'lodash.debounce';
 
 const cardSet = document.querySelector('.card-set');
@@ -15,11 +15,11 @@ let searchQuery = '';
 function onSearch(event) {
   event.preventDefault();
   searchQuery = event.target.value.trim();
+
   if (searchQuery === '') {
     downloadMainHomePage();
   } else downloadSearchQuery();
 }
-
 
 async function getGenres() {
   try {
@@ -51,7 +51,16 @@ async function getDataAboutSearchQuery(pageNumber) {
 
 async function renderSearchQuery(pageNumber) {
   spinner.classList.add('spinner');
-  const genres = await getGenres();
+
+  let genres = null;
+
+  if (!localStorage.getItem('genres')) {
+    genres = await getGenres();
+    localStorage.setItem('genres', JSON.stringify(genres));
+  } else {
+    genres = JSON.parse(localStorage.getItem('genres'));
+  }
+
   const { movies, totalPages } = await getDataAboutSearchQuery(pageNumber);
 
   const cardsMarkup = movies
@@ -72,6 +81,10 @@ function getGenresMarkup(genres) {
   let genresMarkup = '';
 
   switch (genres.length) {
+    case 0:
+      genresMarkup = `<li class="card-set__genre-movie">Genre's list is empty</li>`;
+      break;
+
     case 1:
       genresMarkup = `<li class="card-set__genre-movie">${genres[0]}</li>`;
       break;
