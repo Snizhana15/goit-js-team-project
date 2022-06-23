@@ -1,4 +1,5 @@
 import { getGenresMarkup } from './render-popular-movies';
+import * as image from '../images/movie.jpg';
 
 const refs = {
   cardSet: document.querySelector('.card-set'),
@@ -87,6 +88,16 @@ const showLibraryPage = () => {
 
   const startPageLibrary = libraryList.slice(0, moviesbyPage);
   refs.cardSet.innerHTML = '';
+
+  if (libraryList.length === 0) {
+    const emptyMarkup = `<div class="library__empty-container">
+                          <p class="library__empty-text">Your library is empty. Please, add some movies!!!</p>
+                          <img src="${image}" alt="Empty library image" width="500" height="500">
+                        </div>`;
+
+    refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
+    return;
+  }
 
   getCountPages(libraryList);
   renderWatched(startPageLibrary);
@@ -199,7 +210,7 @@ const onClickLibrary = e => {
 //====================render pagination for library============
 
 const markupNumPage = pageCount => {
-  markupEmpty = [];
+  const markupEmpty = [];
 
   for (let i = 1; i <= pageCount; i++) {
     let page = '';
