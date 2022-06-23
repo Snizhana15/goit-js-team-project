@@ -63,6 +63,7 @@ const onShowWatched = () => {
 
     refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
     watchedSpinner.classList.remove('spinner');
+    refs.paginationSet.innerHTML = '';
     return;
   }
 
@@ -92,6 +93,7 @@ const onShowQueue = () => {
 
     refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
     queueSpinner.classList.remove('spinner');
+    refs.paginationSet.innerHTML = '';
     return;
   }
 
@@ -118,6 +120,7 @@ const showLibraryPage = () => {
                         </div>`;
 
     refs.cardSet.insertAdjacentHTML('afterbegin', emptyMarkup);
+    refs.paginationSet.innerHTML = '';
     return;
   }
 
